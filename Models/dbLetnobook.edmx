@@ -1,0 +1,605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="letnobookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tClass">
+          <Key>
+            <PropertyRef Name="fClassId" />
+          </Key>
+          <Property Name="fClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f年級" Type="nvarchar" MaxLength="50" />
+          <Property Name="f班號" Type="nvarchar" MaxLength="50" />
+          <Property Name="f學級年度" Type="nvarchar" MaxLength="50" />
+          <Property Name="f老師姓名" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tCommunication">
+          <Key>
+            <PropertyRef Name="f交流編號" />
+          </Key>
+          <Property Name="f交流編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f日期" Type="date" />
+          <Property Name="f老師交代事項" Type="nvarchar(max)" />
+          <Property Name="f家長交代事項" Type="nvarchar(max)" />
+          <Property Name="f學生編號" Type="int" />
+          <Property Name="f家長簽名" Type="bit" />
+        </EntityType>
+        <EntityType Name="tDiary">
+          <Key>
+            <PropertyRef Name="f日誌編號" />
+          </Key>
+          <Property Name="f日誌編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f學生日誌文字" Type="nvarchar(max)" />
+          <Property Name="f學生日誌照片" Type="nvarchar(max)" />
+          <Property Name="f日誌批改" Type="nvarchar(max)" />
+          <Property Name="f日期" Type="date" />
+          <Property Name="f學生編號" Type="int" />
+        </EntityType>
+        <EntityType Name="tInfo">
+          <Key>
+            <PropertyRef Name="fInfoId" />
+          </Key>
+          <Property Name="fInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f日期" Type="date" />
+          <Property Name="f作業通知" Type="nvarchar(max)" />
+          <Property Name="f用品通知" Type="nvarchar(max)" />
+          <Property Name="f其他通知" Type="nvarchar(max)" />
+          <Property Name="fClassId" Type="int" />
+        </EntityType>
+        <EntityType Name="tParents">
+          <Key>
+            <PropertyRef Name="f家庭編號" />
+          </Key>
+          <Property Name="f家庭編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f家長姓名" Type="nvarchar" MaxLength="50" />
+          <Property Name="f家長生日" Type="date" />
+          <Property Name="f家長密碼" Type="nvarchar" MaxLength="50" />
+          <Property Name="f身份區分" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tStudent">
+          <Key>
+            <PropertyRef Name="f學生編號" />
+          </Key>
+          <Property Name="f學生編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f學生姓名" Type="nvarchar" MaxLength="50" />
+          <Property Name="f學生生日" Type="date" />
+          <Property Name="f學生密碼" Type="nvarchar" MaxLength="50" />
+          <Property Name="f學生性別" Type="bit" />
+          <Property Name="fClassId" Type="int" />
+          <Property Name="f身份區分" Type="nvarchar" MaxLength="50" />
+          <Property Name="f家庭編號" Type="int" />
+        </EntityType>
+        <EntityType Name="tTeacher">
+          <Key>
+            <PropertyRef Name="f老師編號" />
+          </Key>
+          <Property Name="f老師編號" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="f老師姓名" Type="nvarchar" MaxLength="50" />
+          <Property Name="f老師生日" Type="date" />
+          <Property Name="f老師密碼" Type="nvarchar" MaxLength="50" />
+          <Property Name="f老師性別" Type="bit" />
+          <Property Name="f身份區分" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tTeachingData">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="int" Nullable="false" />
+          <Property Name="fClassId" Type="int" />
+          <Property Name="f教師編號" Type="int" />
+          <Property Name="是否為該班導師" Type="bit" />
+          <Property Name="f級任班課表" Type="nvarchar(max)" />
+          <Property Name="f科任班課表" Type="nvarchar(max)" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'letnobook.dbo.tTotal' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="tTotal">
+          <Key>
+            <PropertyRef Name="f身份區分" />
+          </Key>
+          <Property Name="f學級年度" Type="nvarchar" MaxLength="50" />
+          <Property Name="f年級" Type="nvarchar" MaxLength="50" />
+          <Property Name="f班級" Type="nvarchar" MaxLength="50" />
+          <Property Name="f學生編號" Type="int" />
+          <Property Name="f座號" Type="nvarchar" MaxLength="50" />
+          <Property Name="f學生姓名" Type="nvarchar" MaxLength="50" />
+          <Property Name="f老師編號" Type="int" />
+          <Property Name="f導師姓名" Type="nvarchar" MaxLength="50" />
+          <Property Name="f帳號" Type="nvarchar" MaxLength="50" />
+          <Property Name="f密碼" Type="nvarchar" MaxLength="50" />
+          <Property Name="f身份區分" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="f班級課表" Type="nvarchar" MaxLength="50" />
+          <Property Name="f授課課表" Type="nvarchar" MaxLength="50" />
+          <Property Name="f日期" Type="date" />
+          <Property Name="f作業通知" Type="nvarchar(max)" />
+          <Property Name="f用品通知" Type="nvarchar(max)" />
+          <Property Name="f其他通知" Type="nvarchar(max)" />
+          <Property Name="f推播通知" Type="nvarchar(max)" />
+          <Property Name="f學生日誌照片" Type="nvarchar(max)" />
+          <Property Name="f學生日誌文字" Type="nvarchar(max)" />
+          <Property Name="f日誌批改" Type="nvarchar(max)" />
+          <Property Name="f家長交代事項" Type="nvarchar(max)" />
+          <Property Name="f老師交代事項" Type="nvarchar(max)" />
+          <Property Name="f家長簽章" Type="bit" />
+          <Property Name="f導師簽章" Type="bit" />
+          <Property Name="f性別" Type="bit" />
+          <Property Name="f生日" Type="nvarchar" MaxLength="50" />
+          <Property Name="fClassId" Type="int" />
+        </EntityType>
+        <Association Name="FK_tCommunication_tStudent">
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="0..1" />
+          <End Role="tCommunication" Type="Self.tCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStudent">
+              <PropertyRef Name="f學生編號" />
+            </Principal>
+            <Dependent Role="tCommunication">
+              <PropertyRef Name="f學生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiary_tStudent">
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="0..1" />
+          <End Role="tDiary" Type="Self.tDiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStudent">
+              <PropertyRef Name="f學生編號" />
+            </Principal>
+            <Dependent Role="tDiary">
+              <PropertyRef Name="f學生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStudent_tClass">
+          <End Role="tClass" Type="Self.tClass" Multiplicity="0..1" />
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tClass">
+              <PropertyRef Name="fClassId" />
+            </Principal>
+            <Dependent Role="tStudent">
+              <PropertyRef Name="fClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStudent_tParents">
+          <End Role="tParents" Type="Self.tParents" Multiplicity="0..1" />
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tParents">
+              <PropertyRef Name="f家庭編號" />
+            </Principal>
+            <Dependent Role="tStudent">
+              <PropertyRef Name="f家庭編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="letnobookModelStoreContainer">
+          <EntitySet Name="tClass" EntityType="Self.tClass" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCommunication" EntityType="Self.tCommunication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tDiary" EntityType="Self.tDiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tInfo" EntityType="Self.tInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tParents" EntityType="Self.tParents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tStudent" EntityType="Self.tStudent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTeacher" EntityType="Self.tTeacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTeachingData" EntityType="Self.tTeachingData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTotal" EntityType="Self.tTotal" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tTotal].[f學級年度] AS [f學級年度], 
+    [tTotal].[f年級] AS [f年級], 
+    [tTotal].[f班級] AS [f班級], 
+    [tTotal].[f學生編號] AS [f學生編號], 
+    [tTotal].[f座號] AS [f座號], 
+    [tTotal].[f學生姓名] AS [f學生姓名], 
+    [tTotal].[f老師編號] AS [f老師編號], 
+    [tTotal].[f導師姓名] AS [f導師姓名], 
+    [tTotal].[f帳號] AS [f帳號], 
+    [tTotal].[f密碼] AS [f密碼], 
+    [tTotal].[f身份區分] AS [f身份區分], 
+    [tTotal].[f班級課表] AS [f班級課表], 
+    [tTotal].[f授課課表] AS [f授課課表], 
+    [tTotal].[f日期] AS [f日期], 
+    [tTotal].[f作業通知] AS [f作業通知], 
+    [tTotal].[f用品通知] AS [f用品通知], 
+    [tTotal].[f其他通知] AS [f其他通知], 
+    [tTotal].[f推播通知] AS [f推播通知], 
+    [tTotal].[f學生日誌照片] AS [f學生日誌照片], 
+    [tTotal].[f學生日誌文字] AS [f學生日誌文字], 
+    [tTotal].[f日誌批改] AS [f日誌批改], 
+    [tTotal].[f家長交代事項] AS [f家長交代事項], 
+    [tTotal].[f老師交代事項] AS [f老師交代事項], 
+    [tTotal].[f家長簽章] AS [f家長簽章], 
+    [tTotal].[f導師簽章] AS [f導師簽章], 
+    [tTotal].[f性別] AS [f性別], 
+    [tTotal].[f生日] AS [f生日], 
+    [tTotal].[fClassId] AS [fClassId]
+    FROM [dbo].[tTotal] AS [tTotal]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tCommunication_tStudent" Association="Self.FK_tCommunication_tStudent">
+            <End Role="tStudent" EntitySet="tStudent" />
+            <End Role="tCommunication" EntitySet="tCommunication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiary_tStudent" Association="Self.FK_tDiary_tStudent">
+            <End Role="tStudent" EntitySet="tStudent" />
+            <End Role="tDiary" EntitySet="tDiary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStudent_tClass" Association="Self.FK_tStudent_tClass">
+            <End Role="tClass" EntitySet="tClass" />
+            <End Role="tStudent" EntitySet="tStudent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStudent_tParents" Association="Self.FK_tStudent_tParents">
+            <End Role="tParents" EntitySet="tParents" />
+            <End Role="tStudent" EntitySet="tStudent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="letnobookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tClass">
+          <Key>
+            <PropertyRef Name="fClassId" />
+          </Key>
+          <Property Name="fClassId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f年級" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f班號" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f學級年度" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f老師姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tStudents" Relationship="Self.FK_tStudent_tClass" FromRole="tClass" ToRole="tStudent" />
+        </EntityType>
+        <EntityType Name="tCommunication">
+          <Key>
+            <PropertyRef Name="f交流編號" />
+          </Key>
+          <Property Name="f交流編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f日期" Type="DateTime" Precision="0" />
+          <Property Name="f老師交代事項" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f家長交代事項" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f學生編號" Type="Int32" />
+          <Property Name="f家長簽名" Type="Boolean" />
+          <NavigationProperty Name="tStudent" Relationship="Self.FK_tCommunication_tStudent" FromRole="tCommunication" ToRole="tStudent" />
+        </EntityType>
+        <EntityType Name="tDiary">
+          <Key>
+            <PropertyRef Name="f日誌編號" />
+          </Key>
+          <Property Name="f日誌編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f學生日誌文字" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f學生日誌照片" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f日誌批改" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f日期" Type="DateTime" Precision="0" />
+          <Property Name="f學生編號" Type="Int32" />
+          <NavigationProperty Name="tStudent" Relationship="Self.FK_tDiary_tStudent" FromRole="tDiary" ToRole="tStudent" />
+        </EntityType>
+        <EntityType Name="tInfo">
+          <Key>
+            <PropertyRef Name="fInfoId" />
+          </Key>
+          <Property Name="fInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f日期" Type="DateTime" Precision="0" />
+          <Property Name="f作業通知" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f用品通知" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f其他通知" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fClassId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tParent">
+          <Key>
+            <PropertyRef Name="f家庭編號" />
+          </Key>
+          <Property Name="f家庭編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f家長姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f家長生日" Type="DateTime" Precision="0" />
+          <Property Name="f家長密碼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f身份區分" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tStudents" Relationship="Self.FK_tStudent_tParents" FromRole="tParents" ToRole="tStudent" />
+        </EntityType>
+        <EntityType Name="tStudent">
+          <Key>
+            <PropertyRef Name="f學生編號" />
+          </Key>
+          <Property Name="f學生編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f學生姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f學生生日" Type="DateTime" Precision="0" />
+          <Property Name="f學生密碼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f學生性別" Type="Boolean" />
+          <Property Name="fClassId" Type="Int32" />
+          <Property Name="f身份區分" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f家庭編號" Type="Int32" />
+          <NavigationProperty Name="tClass" Relationship="Self.FK_tStudent_tClass" FromRole="tStudent" ToRole="tClass" />
+          <NavigationProperty Name="tCommunications" Relationship="Self.FK_tCommunication_tStudent" FromRole="tStudent" ToRole="tCommunication" />
+          <NavigationProperty Name="tDiaries" Relationship="Self.FK_tDiary_tStudent" FromRole="tStudent" ToRole="tDiary" />
+          <NavigationProperty Name="tParent" Relationship="Self.FK_tStudent_tParents" FromRole="tStudent" ToRole="tParents" />
+        </EntityType>
+        <EntityType Name="tTeacher">
+          <Key>
+            <PropertyRef Name="f老師編號" />
+          </Key>
+          <Property Name="f老師編號" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="f老師姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f老師生日" Type="DateTime" Precision="0" />
+          <Property Name="f老師密碼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f老師性別" Type="Boolean" />
+          <Property Name="f身份區分" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tTeachingData">
+          <Key>
+            <PropertyRef Name="SID" />
+          </Key>
+          <Property Name="SID" Type="Int32" Nullable="false" />
+          <Property Name="fClassId" Type="Int32" />
+          <Property Name="f教師編號" Type="Int32" />
+          <Property Name="是否為該班導師" Type="Boolean" />
+          <Property Name="f級任班課表" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f科任班課表" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tTotal">
+          <Key>
+            <PropertyRef Name="f身份區分" />
+          </Key>
+          <Property Name="f學級年度" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f年級" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f班級" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f學生編號" Type="Int32" />
+          <Property Name="f座號" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f學生姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f老師編號" Type="Int32" />
+          <Property Name="f導師姓名" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f帳號" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f密碼" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f身份區分" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="f班級課表" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f授課課表" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f日期" Type="DateTime" Precision="0" />
+          <Property Name="f作業通知" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f用品通知" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f其他通知" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f推播通知" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f學生日誌照片" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f學生日誌文字" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f日誌批改" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f家長交代事項" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f老師交代事項" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="f家長簽章" Type="Boolean" />
+          <Property Name="f導師簽章" Type="Boolean" />
+          <Property Name="f性別" Type="Boolean" />
+          <Property Name="f生日" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fClassId" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_tStudent_tClass">
+          <End Role="tClass" Type="Self.tClass" Multiplicity="0..1" />
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tClass">
+              <PropertyRef Name="fClassId" />
+            </Principal>
+            <Dependent Role="tStudent">
+              <PropertyRef Name="fClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tCommunication_tStudent">
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="0..1" />
+          <End Role="tCommunication" Type="Self.tCommunication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStudent">
+              <PropertyRef Name="f學生編號" />
+            </Principal>
+            <Dependent Role="tCommunication">
+              <PropertyRef Name="f學生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiary_tStudent">
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="0..1" />
+          <End Role="tDiary" Type="Self.tDiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStudent">
+              <PropertyRef Name="f學生編號" />
+            </Principal>
+            <Dependent Role="tDiary">
+              <PropertyRef Name="f學生編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStudent_tParents">
+          <End Role="tParents" Type="Self.tParent" Multiplicity="0..1" />
+          <End Role="tStudent" Type="Self.tStudent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tParents">
+              <PropertyRef Name="f家庭編號" />
+            </Principal>
+            <Dependent Role="tStudent">
+              <PropertyRef Name="f家庭編號" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="letnobookEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tClasses" EntityType="Self.tClass" />
+          <EntitySet Name="tCommunications" EntityType="Self.tCommunication" />
+          <EntitySet Name="tDiaries" EntityType="Self.tDiary" />
+          <EntitySet Name="tInfoes" EntityType="Self.tInfo" />
+          <EntitySet Name="tParents" EntityType="Self.tParent" />
+          <EntitySet Name="tStudents" EntityType="Self.tStudent" />
+          <EntitySet Name="tTeachers" EntityType="Self.tTeacher" />
+          <EntitySet Name="tTeachingDatas" EntityType="Self.tTeachingData" />
+          <EntitySet Name="tTotals" EntityType="Self.tTotal" />
+          <AssociationSet Name="FK_tStudent_tClass" Association="Self.FK_tStudent_tClass">
+            <End Role="tClass" EntitySet="tClasses" />
+            <End Role="tStudent" EntitySet="tStudents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tCommunication_tStudent" Association="Self.FK_tCommunication_tStudent">
+            <End Role="tStudent" EntitySet="tStudents" />
+            <End Role="tCommunication" EntitySet="tCommunications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiary_tStudent" Association="Self.FK_tDiary_tStudent">
+            <End Role="tStudent" EntitySet="tStudents" />
+            <End Role="tDiary" EntitySet="tDiaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStudent_tParents" Association="Self.FK_tStudent_tParents">
+            <End Role="tParents" EntitySet="tParents" />
+            <End Role="tStudent" EntitySet="tStudents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="letnobookModelStoreContainer" CdmEntityContainer="letnobookEntities">
+          <EntitySetMapping Name="tClasses">
+            <EntityTypeMapping TypeName="letnobookModel.tClass">
+              <MappingFragment StoreEntitySet="tClass">
+                <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+                <ScalarProperty Name="f年級" ColumnName="f年級" />
+                <ScalarProperty Name="f班號" ColumnName="f班號" />
+                <ScalarProperty Name="f學級年度" ColumnName="f學級年度" />
+                <ScalarProperty Name="f老師姓名" ColumnName="f老師姓名" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCommunications">
+            <EntityTypeMapping TypeName="letnobookModel.tCommunication">
+              <MappingFragment StoreEntitySet="tCommunication">
+                <ScalarProperty Name="f交流編號" ColumnName="f交流編號" />
+                <ScalarProperty Name="f日期" ColumnName="f日期" />
+                <ScalarProperty Name="f老師交代事項" ColumnName="f老師交代事項" />
+                <ScalarProperty Name="f家長交代事項" ColumnName="f家長交代事項" />
+                <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+                <ScalarProperty Name="f家長簽名" ColumnName="f家長簽名" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tDiaries">
+            <EntityTypeMapping TypeName="letnobookModel.tDiary">
+              <MappingFragment StoreEntitySet="tDiary">
+                <ScalarProperty Name="f日誌編號" ColumnName="f日誌編號" />
+                <ScalarProperty Name="f學生日誌文字" ColumnName="f學生日誌文字" />
+                <ScalarProperty Name="f學生日誌照片" ColumnName="f學生日誌照片" />
+                <ScalarProperty Name="f日誌批改" ColumnName="f日誌批改" />
+                <ScalarProperty Name="f日期" ColumnName="f日期" />
+                <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tInfoes">
+            <EntityTypeMapping TypeName="letnobookModel.tInfo">
+              <MappingFragment StoreEntitySet="tInfo">
+                <ScalarProperty Name="fInfoId" ColumnName="fInfoId" />
+                <ScalarProperty Name="f日期" ColumnName="f日期" />
+                <ScalarProperty Name="f作業通知" ColumnName="f作業通知" />
+                <ScalarProperty Name="f用品通知" ColumnName="f用品通知" />
+                <ScalarProperty Name="f其他通知" ColumnName="f其他通知" />
+                <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tParents">
+            <EntityTypeMapping TypeName="letnobookModel.tParent">
+              <MappingFragment StoreEntitySet="tParents">
+                <ScalarProperty Name="f家庭編號" ColumnName="f家庭編號" />
+                <ScalarProperty Name="f家長姓名" ColumnName="f家長姓名" />
+                <ScalarProperty Name="f家長生日" ColumnName="f家長生日" />
+                <ScalarProperty Name="f家長密碼" ColumnName="f家長密碼" />
+                <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tStudents">
+            <EntityTypeMapping TypeName="letnobookModel.tStudent">
+              <MappingFragment StoreEntitySet="tStudent">
+                <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+                <ScalarProperty Name="f學生姓名" ColumnName="f學生姓名" />
+                <ScalarProperty Name="f學生生日" ColumnName="f學生生日" />
+                <ScalarProperty Name="f學生密碼" ColumnName="f學生密碼" />
+                <ScalarProperty Name="f學生性別" ColumnName="f學生性別" />
+                <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+                <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+                <ScalarProperty Name="f家庭編號" ColumnName="f家庭編號" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTeachers">
+            <EntityTypeMapping TypeName="letnobookModel.tTeacher">
+              <MappingFragment StoreEntitySet="tTeacher">
+                <ScalarProperty Name="f老師編號" ColumnName="f老師編號" />
+                <ScalarProperty Name="f老師姓名" ColumnName="f老師姓名" />
+                <ScalarProperty Name="f老師生日" ColumnName="f老師生日" />
+                <ScalarProperty Name="f老師密碼" ColumnName="f老師密碼" />
+                <ScalarProperty Name="f老師性別" ColumnName="f老師性別" />
+                <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTeachingDatas">
+            <EntityTypeMapping TypeName="letnobookModel.tTeachingData">
+              <MappingFragment StoreEntitySet="tTeachingData">
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+                <ScalarProperty Name="f教師編號" ColumnName="f教師編號" />
+                <ScalarProperty Name="是否為該班導師" ColumnName="是否為該班導師" />
+                <ScalarProperty Name="f級任班課表" ColumnName="f級任班課表" />
+                <ScalarProperty Name="f科任班課表" ColumnName="f科任班課表" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTotals">
+            <EntityTypeMapping TypeName="letnobookModel.tTotal">
+              <MappingFragment StoreEntitySet="tTotal">
+                <ScalarProperty Name="f學級年度" ColumnName="f學級年度" />
+                <ScalarProperty Name="f年級" ColumnName="f年級" />
+                <ScalarProperty Name="f班級" ColumnName="f班級" />
+                <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+                <ScalarProperty Name="f座號" ColumnName="f座號" />
+                <ScalarProperty Name="f學生姓名" ColumnName="f學生姓名" />
+                <ScalarProperty Name="f老師編號" ColumnName="f老師編號" />
+                <ScalarProperty Name="f導師姓名" ColumnName="f導師姓名" />
+                <ScalarProperty Name="f帳號" ColumnName="f帳號" />
+                <ScalarProperty Name="f密碼" ColumnName="f密碼" />
+                <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+                <ScalarProperty Name="f班級課表" ColumnName="f班級課表" />
+                <ScalarProperty Name="f授課課表" ColumnName="f授課課表" />
+                <ScalarProperty Name="f日期" ColumnName="f日期" />
+                <ScalarProperty Name="f作業通知" ColumnName="f作業通知" />
+                <ScalarProperty Name="f用品通知" ColumnName="f用品通知" />
+                <ScalarProperty Name="f其他通知" ColumnName="f其他通知" />
+                <ScalarProperty Name="f推播通知" ColumnName="f推播通知" />
+                <ScalarProperty Name="f學生日誌照片" ColumnName="f學生日誌照片" />
+                <ScalarProperty Name="f學生日誌文字" ColumnName="f學生日誌文字" />
+                <ScalarProperty Name="f日誌批改" ColumnName="f日誌批改" />
+                <ScalarProperty Name="f家長交代事項" ColumnName="f家長交代事項" />
+                <ScalarProperty Name="f老師交代事項" ColumnName="f老師交代事項" />
+                <ScalarProperty Name="f家長簽章" ColumnName="f家長簽章" />
+                <ScalarProperty Name="f導師簽章" ColumnName="f導師簽章" />
+                <ScalarProperty Name="f性別" ColumnName="f性別" />
+                <ScalarProperty Name="f生日" ColumnName="f生日" />
+                <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

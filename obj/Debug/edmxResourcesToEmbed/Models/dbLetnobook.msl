@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="letnobookModelStoreContainer" CdmEntityContainer="letnobookEntities">
+    <EntitySetMapping Name="tClasses">
+      <EntityTypeMapping TypeName="letnobookModel.tClass">
+        <MappingFragment StoreEntitySet="tClass">
+          <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+          <ScalarProperty Name="f年級" ColumnName="f年級" />
+          <ScalarProperty Name="f班號" ColumnName="f班號" />
+          <ScalarProperty Name="f學級年度" ColumnName="f學級年度" />
+          <ScalarProperty Name="f老師姓名" ColumnName="f老師姓名" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCommunications">
+      <EntityTypeMapping TypeName="letnobookModel.tCommunication">
+        <MappingFragment StoreEntitySet="tCommunication">
+          <ScalarProperty Name="f交流編號" ColumnName="f交流編號" />
+          <ScalarProperty Name="f日期" ColumnName="f日期" />
+          <ScalarProperty Name="f老師交代事項" ColumnName="f老師交代事項" />
+          <ScalarProperty Name="f家長交代事項" ColumnName="f家長交代事項" />
+          <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+          <ScalarProperty Name="f家長簽名" ColumnName="f家長簽名" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDiaries">
+      <EntityTypeMapping TypeName="letnobookModel.tDiary">
+        <MappingFragment StoreEntitySet="tDiary">
+          <ScalarProperty Name="f日誌編號" ColumnName="f日誌編號" />
+          <ScalarProperty Name="f學生日誌文字" ColumnName="f學生日誌文字" />
+          <ScalarProperty Name="f學生日誌照片" ColumnName="f學生日誌照片" />
+          <ScalarProperty Name="f日誌批改" ColumnName="f日誌批改" />
+          <ScalarProperty Name="f日期" ColumnName="f日期" />
+          <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tInfoes">
+      <EntityTypeMapping TypeName="letnobookModel.tInfo">
+        <MappingFragment StoreEntitySet="tInfo">
+          <ScalarProperty Name="fInfoId" ColumnName="fInfoId" />
+          <ScalarProperty Name="f日期" ColumnName="f日期" />
+          <ScalarProperty Name="f作業通知" ColumnName="f作業通知" />
+          <ScalarProperty Name="f用品通知" ColumnName="f用品通知" />
+          <ScalarProperty Name="f其他通知" ColumnName="f其他通知" />
+          <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tParents">
+      <EntityTypeMapping TypeName="letnobookModel.tParent">
+        <MappingFragment StoreEntitySet="tParents">
+          <ScalarProperty Name="f家庭編號" ColumnName="f家庭編號" />
+          <ScalarProperty Name="f家長姓名" ColumnName="f家長姓名" />
+          <ScalarProperty Name="f家長生日" ColumnName="f家長生日" />
+          <ScalarProperty Name="f家長密碼" ColumnName="f家長密碼" />
+          <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tStudents">
+      <EntityTypeMapping TypeName="letnobookModel.tStudent">
+        <MappingFragment StoreEntitySet="tStudent">
+          <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+          <ScalarProperty Name="f學生姓名" ColumnName="f學生姓名" />
+          <ScalarProperty Name="f學生生日" ColumnName="f學生生日" />
+          <ScalarProperty Name="f學生密碼" ColumnName="f學生密碼" />
+          <ScalarProperty Name="f學生性別" ColumnName="f學生性別" />
+          <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+          <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+          <ScalarProperty Name="f家庭編號" ColumnName="f家庭編號" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTeachers">
+      <EntityTypeMapping TypeName="letnobookModel.tTeacher">
+        <MappingFragment StoreEntitySet="tTeacher">
+          <ScalarProperty Name="f老師編號" ColumnName="f老師編號" />
+          <ScalarProperty Name="f老師姓名" ColumnName="f老師姓名" />
+          <ScalarProperty Name="f老師生日" ColumnName="f老師生日" />
+          <ScalarProperty Name="f老師密碼" ColumnName="f老師密碼" />
+          <ScalarProperty Name="f老師性別" ColumnName="f老師性別" />
+          <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTeachingDatas">
+      <EntityTypeMapping TypeName="letnobookModel.tTeachingData">
+        <MappingFragment StoreEntitySet="tTeachingData">
+          <ScalarProperty Name="SID" ColumnName="SID" />
+          <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+          <ScalarProperty Name="f教師編號" ColumnName="f教師編號" />
+          <ScalarProperty Name="是否為該班導師" ColumnName="是否為該班導師" />
+          <ScalarProperty Name="f級任班課表" ColumnName="f級任班課表" />
+          <ScalarProperty Name="f科任班課表" ColumnName="f科任班課表" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTotals">
+      <EntityTypeMapping TypeName="letnobookModel.tTotal">
+        <MappingFragment StoreEntitySet="tTotal">
+          <ScalarProperty Name="f學級年度" ColumnName="f學級年度" />
+          <ScalarProperty Name="f年級" ColumnName="f年級" />
+          <ScalarProperty Name="f班級" ColumnName="f班級" />
+          <ScalarProperty Name="f學生編號" ColumnName="f學生編號" />
+          <ScalarProperty Name="f座號" ColumnName="f座號" />
+          <ScalarProperty Name="f學生姓名" ColumnName="f學生姓名" />
+          <ScalarProperty Name="f老師編號" ColumnName="f老師編號" />
+          <ScalarProperty Name="f導師姓名" ColumnName="f導師姓名" />
+          <ScalarProperty Name="f帳號" ColumnName="f帳號" />
+          <ScalarProperty Name="f密碼" ColumnName="f密碼" />
+          <ScalarProperty Name="f身份區分" ColumnName="f身份區分" />
+          <ScalarProperty Name="f班級課表" ColumnName="f班級課表" />
+          <ScalarProperty Name="f授課課表" ColumnName="f授課課表" />
+          <ScalarProperty Name="f日期" ColumnName="f日期" />
+          <ScalarProperty Name="f作業通知" ColumnName="f作業通知" />
+          <ScalarProperty Name="f用品通知" ColumnName="f用品通知" />
+          <ScalarProperty Name="f其他通知" ColumnName="f其他通知" />
+          <ScalarProperty Name="f推播通知" ColumnName="f推播通知" />
+          <ScalarProperty Name="f學生日誌照片" ColumnName="f學生日誌照片" />
+          <ScalarProperty Name="f學生日誌文字" ColumnName="f學生日誌文字" />
+          <ScalarProperty Name="f日誌批改" ColumnName="f日誌批改" />
+          <ScalarProperty Name="f家長交代事項" ColumnName="f家長交代事項" />
+          <ScalarProperty Name="f老師交代事項" ColumnName="f老師交代事項" />
+          <ScalarProperty Name="f家長簽章" ColumnName="f家長簽章" />
+          <ScalarProperty Name="f導師簽章" ColumnName="f導師簽章" />
+          <ScalarProperty Name="f性別" ColumnName="f性別" />
+          <ScalarProperty Name="f生日" ColumnName="f生日" />
+          <ScalarProperty Name="fClassId" ColumnName="fClassId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
